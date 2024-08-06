@@ -41,7 +41,7 @@ def DFS(x,y):
 visitied[0][0] = 1
 DFS(0,0)
 
-if visitied[n][m-1] == 1:
+if visitied[n-1][m-2] == 1:
     print(1)
 else:
     print(0)
