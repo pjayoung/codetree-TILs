@@ -6,24 +6,24 @@
 
 n, m = map(int, input().split())
 
-grid = [[0 for _ in range(n+2)] for _ in range(n+2)]
-for i in range(1,n+1):
+grid = [[0 for _ in range(m)] for _ in range(n)]
+for i in range(n):
     num = list(input().split()) 
     for j in range(m): 
-        grid[i][j+1] = int(num[j]) 
+        grid[i][j] = int(num[j]) 
 
-graph = [[0 for _ in range(n+1)] for _ in range(n+1)]
-
-visitied = [[0 for _ in range(n+1)] for _ in range(n+1)]
+visitied = [[False for _ in range(m)] for _ in range(n)]
 
 
 def in_range(x,y):
-    return 0 <= x and x < m and 0 <= y and y < m
+    return 0 <= x < n and 0 <= y < m
 
 def can_go(x,y):
     if not in_range(x,y):
         return False
-    if visitied[x][y] or grid[x][y] == 0:
+    if visitied[x][y]:
+        return False
+    if grid[x][y] == 0:
         return False
     
     return True
@@ -33,16 +33,16 @@ def DFS(x,y):
     dxs = [1,0]
     dys = [0,1]
     for dx, dy in zip(dxs, dys):
-        n_x, n_y = x+dx, y+dy
+        nx, ny = x+dx, y+dy
 
-        if can_go(n_x,n_y):
-            visitied[n_x,n_y] = 1
-            DFS(n_x,n_y)
+        if can_go(nx,ny):
+            visitied[nx][ny] = True
+            DFS(nx,ny)
 
 visitied[0][0] = 1
 DFS(0,0)
 
-if visitied[n][m] == 1:
+if visitied[n-1][m-1]:
     print(1)
 else:
     print(0)
