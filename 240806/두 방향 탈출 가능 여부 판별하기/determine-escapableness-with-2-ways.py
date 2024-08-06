@@ -39,7 +39,7 @@ def DFS(x,y):
             visitied[nx][ny] = True
             DFS(nx,ny)
 
-visitied[0][0] = 1
+visitied[0][0] = True
 DFS(0,0)
 
 if visitied[n-1][m-1]:
