@@ -1,12 +1,13 @@
 '''
 아래, 오른쪽 인접 칸으로만 이동 가능
 뱀이 있는 경우 이동 불가능
+탈출 가능 1, 불가능 0
 '''
 
 n, m = map(int, input().split())
 
 grid = [[0 for _ in range(n+2)] for _ in range(n+2)]
-for i in range(1, n+1):
+for i in range(1,n+1):
     num = list(input().split()) 
     for j in range(m): 
         grid[i][j+1] = int(num[j]) 
@@ -41,7 +42,7 @@ def DFS(x,y):
 visitied[0][0] = 1
 DFS(0,0)
 
-if visitied[n-1][m-2] == 1:
+if visitied[n][m] == 1:
     print(1)
 else:
     print(0)
