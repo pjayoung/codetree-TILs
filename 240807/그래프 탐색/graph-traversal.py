@@ -24,6 +24,5 @@ def DFS(vertex):
             DFS(curr_v)
     return cnt
 
-root_vertex = start_points[0]
-visited[0] = True
-print(DFS(root_vertex)-1)
+visited[1] = True
+print(DFS(1))
