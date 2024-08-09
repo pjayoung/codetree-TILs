@@ -29,5 +29,7 @@ for k in range(1, 101): #k가 1부터 100까지랬으니까,,
     if safe_count > max_safe_count:
         max_safe_count = safe_count
         best_k = k
+if max_safe_count == 0:
+    best_k = 1
 
 print(best_k, max_safe_count)
