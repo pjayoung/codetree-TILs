@@ -8,9 +8,8 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 def can_go(x, y):
-    if 0 <= x < n and 0 <= y < m:
-        if not visited[x][y]:
-            return True
+    if 0 <= x < n and 0 <= y < m and not visited[x][y]:
+        return True
     return False
 
 def dfs(x, y, k):
@@ -34,6 +33,7 @@ for k in range(1, 101):
         max_safe_count = safe_count
         best_k = k
 
+# 안전 구역이 발견되지 않으면 최소 k는 1로 설정
 if max_safe_count == 0:
     best_k = 1
 
