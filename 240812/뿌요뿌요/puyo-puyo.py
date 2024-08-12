@@ -12,8 +12,6 @@ n = int(input())
 grid = [list(map(int, input().split())) for _ in range(n)]
 visited = [[False for _ in range(n)] for _ in range(n)]
 
-num = 1
-
 def initialize_visited():
     for i in range(n):
         for j in range(n):
@@ -28,7 +26,7 @@ def can_go(x,y,k):
         return False
     return True
 
-
+num = 1
 def DFS(x, y, k):
     global num
     # 상하좌우
@@ -57,7 +55,7 @@ pup = 0
 max_num = 0
 for k in range(1, 101):
     get_zone_num(k)
-    if num > 4:
+    if num >= 4:
         pup+=1
     if num > max_num:
         max_num = num
