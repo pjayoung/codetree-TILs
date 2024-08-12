@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(2500)
+
 n, m = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
 
@@ -15,14 +18,11 @@ def can_go(x, y):
     return 0 <= x < n and 0 <= y < m and not visited[x][y]
 
 def dfs(x, y, k):
-    stack = [(x, y)]
-    while stack:
-        cx, cy = stack.pop()
-        for i in range(4):
-            nx, ny = cx + dx[i], cy + dy[i]
-            if can_go(nx, ny) and graph[nx][ny] > k:
-                visited[nx][ny] = True
-                stack.append((nx, ny))
+    visited[x][y] = True
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if can_go(nx, ny) and graph[nx][ny] > k:
+            dfs(nx, ny, k)
 
 
 for k in range(min_height, max_height + 1):
@@ -32,7 +32,6 @@ for k in range(min_height, max_height + 1):
     for i in range(n):
         for j in range(m):
             if not visited[i][j] and graph[i][j] > k:
-                visited[i][j] = True
                 dfs(i, j, k)
                 safe_count += 1
 
