@@ -31,13 +31,13 @@ def DFS(x, y, k):
     global num
     # 상하좌우
     dxs, dys = [-1,1,0,0], [0,0,-1,1]
+    visited[x][y] = True
 
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
         
         if can_go(nx, ny, k):
             num += 1
-            visited[nx][ny] = True
             DFS(nx, ny, k)
 
 def get_zone_num(k):
