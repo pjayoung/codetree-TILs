@@ -33,17 +33,16 @@ def can_go(x, y, k):
 
 
 def dfs(x, y, k):
-    # 0: 오른쪽, 1: 아래쪽, 2: 왼쪽, 3: 위쪽
-    # dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
+    # 상하좌우
     dxs, dys = [-1,1,0,0], [0,0,-1,1]
 
     # 네 방향에 각각에 대하여 DFS 탐색을 합니다.
     for dx, dy in zip(dxs, dys):
-        new_x, new_y = x + dx, y + dy
+        nx, ny = x + dx, y + dy
         
-        if can_go(new_x, new_y, k):
-            visited[new_x][new_y] = True
-            dfs(new_x, new_y, k)
+        if can_go(nx, ny, k):
+            visited[nx][ny] = True
+            dfs(nx, ny, k)
 
 
 def get_zone_num(k):
