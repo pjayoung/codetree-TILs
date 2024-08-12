@@ -22,7 +22,7 @@ def dfs(x, y, k):
         if can_go(nx, ny) and graph[nx][ny] > k:
             dfs(nx, ny, k)
 
-for k in range(min_height, max_height+1):
+for k in range(min_height, max_height+2):
     visited = [[False] * m for _ in range(n)]
     safe_count = 0
     
