@@ -26,38 +26,30 @@ def can_go(x,y,k):
         return False
     return True
 
-num = 1
-def DFS(x, y, k):
-    global num
+
+def dfs(x, y, k):
     # 상하좌우
-    dxs, dys = [-1,1,0,0], [0,0,-1,1]
+    dxs, dys = [-1, 1, 0, 0], [0, 0, -1, 1]
+    count = 1
     visited[x][y] = True
 
     for dx, dy in zip(dxs, dys):
         nx, ny = x + dx, y + dy
-        
-        if can_go(nx, ny, k):
-            num += 1
-            DFS(nx, ny, k)
 
-def get_zone_num(k):
-    global num
-    num = 1
-    initialize_visited()
-    
-    for i in range(n):
-        for j in range(n):
-            if can_go(i, j, k):
-                visited[i][j] = True
-                DFS(i, j, k)
+        if can_go(nx, ny, k):
+            count += dfs(nx, ny, k)
+    return count
 
 pup = 0
 max_num = 0
-for k in range(1, 101):
-    get_zone_num(k)
-    if num >= 4:
-        pup+=1
-    if num > max_num:
-        max_num = num
+initialize_visited()
+
+for i in range(n):
+    for j in range(n):
+        if not visited[i][j]:
+            size = dfs(i, j, grid[i][j])
+            if size >=4:
+                pup += 1
+            max_num = max(size, max_num)
 
 print(pup, max_num)
