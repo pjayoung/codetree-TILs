@@ -4,6 +4,7 @@ graph = [list(map(int, input().split())) for _ in range(n)]
 max_safe_count = 0
 best_k = 0
 
+
 min_height = min(min(row) for row in graph)
 max_height = max(max(row) for row in graph)
 
@@ -11,18 +12,20 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 def can_go(x, y):
-    if 0 <= x < n and 0 <= y < m and not visited[x][y]:
-        return True
-    return False
+    return 0 <= x < n and 0 <= y < m and not visited[x][y]
 
 def dfs(x, y, k):
-    visited[x][y] = True
-    for i in range(4):
-        nx, ny = x + dx[i], y + dy[i]
-        if can_go(nx, ny) and graph[nx][ny] > k:
-            dfs(nx, ny, k)
+    stack = [(x, y)]
+    while stack:
+        cx, cy = stack.pop()
+        for i in range(4):
+            nx, ny = cx + dx[i], cy + dy[i]
+            if can_go(nx, ny) and graph[nx][ny] > k:
+                visited[nx][ny] = True
+                stack.append((nx, ny))
 
-for k in range(min_height, max_height+1):
+
+for k in range(min_height, max_height + 1):
     visited = [[False] * m for _ in range(n)]
     safe_count = 0
     
