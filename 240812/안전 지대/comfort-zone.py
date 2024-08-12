@@ -39,4 +39,8 @@ for k in range(min_height, max_height + 1):
         max_safe_count = safe_count
         best_k = k
 
+
+if max_safe_count == 0:
+    best_k = 1
+
 print(best_k, max_safe_count)
