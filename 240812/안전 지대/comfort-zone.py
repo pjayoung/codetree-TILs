@@ -1,12 +1,3 @@
-def dfs(x, y, k):
-    visited[x][y] = True
-    
-    for i in range(4):
-        nx, ny = x + dx[i], y + dy[i]
-        if 0 <= nx < n and 0 <= ny < m:  
-            if not visited[nx][ny] and graph[nx][ny] > k:
-                dfs(nx, ny, k)
-
 n, m = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
 
@@ -15,6 +6,16 @@ best_k = 0
 
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
+
+def dfs(x, y, k):
+    global dx, dy
+    visited[x][y] = True
+    
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if 0 <= nx < n and 0 <= ny < m:  
+            if not visited[nx][ny] and graph[nx][ny] > k:
+                dfs(nx, ny, k)
 
 for k in range(1, 101): #k가 1부터 100까지랬으니까,,
     visited = [[False] * m for _ in range(n)] # 중요) 항상 초기화를 해줘야 함(k 바뀔 때마다)
