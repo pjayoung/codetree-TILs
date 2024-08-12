@@ -22,13 +22,14 @@ def dfs(x, y, k):
         if can_go(nx, ny) and graph[nx][ny] > k:
             dfs(nx, ny, k)
 
-for k in range(min_height, max_height+2):
+for k in range(min_height, max_height+1):
     visited = [[False] * m for _ in range(n)]
     safe_count = 0
     
     for i in range(n):
         for j in range(m):
             if not visited[i][j] and graph[i][j] > k:
+                visited[i][j] = True
                 dfs(i, j, k)
                 safe_count += 1
 
